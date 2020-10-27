@@ -7,7 +7,7 @@ jobs:
       - uses: actions/labeler@2.2.0
         with:
           configuration-path: ".github/db-migrations-labeler.yml"
-          repo-token: "${{ secrets.GITHUB_TOKEN }}"
+          repo-token: "${{ secrets.CI_ACCESS_TOKEN }}"
           sync-labels: true
   verify-database-migrations:
     runs-on: ubuntu-latest
