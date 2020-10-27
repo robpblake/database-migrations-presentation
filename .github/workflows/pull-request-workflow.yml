@@ -16,7 +16,7 @@ jobs:
       - uses: peaceiris/actions-label-commenter@v1
         with:
           config_file: ".github/db-migrations-comment.yml"
-          repo-token: "${{ secrets.GITHUB_TOKEN }}"
+          github_token: "${{ secrets.GITHUB_TOKEN }}"
   verify-database-migrations:
     runs-on: ubuntu-latest
     needs: triage
