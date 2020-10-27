@@ -9,9 +9,9 @@ jobs:
       - uses: kentaro-m/auto-assign-action@v1.1.2
         with:
           configuration-path: ".github/db-migrations-reviewers.yml"
-          repo-token: "${{ secrets.CI_ACCESS_TOKEN }}"
+          repo-token: "${{ secrets.GITHUB_ACCESS_TOKEN }}"
       - uses: actions/checkout@v2
       - uses: peaceiris/actions-label-commenter@v1.6.1
         with:
           config_file: ".github/db-migrations-comment.yml"
-          github_token: "${{ secrets.CI_ACCESS_TOKEN }}"
+          github_token: "${{ secrets.GITHUB_ACCESS_TOKEN }}"
