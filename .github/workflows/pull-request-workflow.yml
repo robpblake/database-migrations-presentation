@@ -8,3 +8,9 @@ jobs:
         with:
           repo-token: "${{ secrets.GITHUB_TOKEN }}"
           sync-labels: true
+  verify-database-migrations:
+    runs-on: ubuntu-latest
+    needs: triage
+    steps:
+      - run: docker-compose version
+        shell: bash
