@@ -14,3 +14,5 @@ jobs:
     steps:
       - run: docker-compose version
         shell: bash
+      - run: mysql --version
+        shell: bash
