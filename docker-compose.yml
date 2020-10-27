@@ -4,7 +4,7 @@ services:
   migrate:
     image: flyway/flyway:7.0-alpine
     environment:
-      - FLYWAY_CONFIG_FILES=conf/flyway.conf,conf/local-dev/flyway.conf
+      - FLYWAY_CONFIG_FILES=conf/flyway.conf,conf/envs/local/flyway.conf
     command: migrate
     volumes:
       - ./sql/migrations:/flyway/sql
