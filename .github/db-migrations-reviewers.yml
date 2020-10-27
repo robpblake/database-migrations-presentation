@@ -1,8 +1,6 @@
 addReviewers: true
-addAssignees: true
+addAssignees: author
 reviewers:
-  - robpblake
-assignees:
   - robpblake
 filterLabels:
   include:
