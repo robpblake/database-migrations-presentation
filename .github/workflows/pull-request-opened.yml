@@ -9,14 +9,6 @@ jobs:
           configuration-path: ".github/db-migrations-labeler.yml"
           repo-token: "${{ secrets.GITHUB_TOKEN }}"
           sync-labels: true
-      - uses: kentaro-m/auto-assign-action@v1.1.2
-        with:
-          configuration-path: ".github/db-migrations-reviewers.yml"
-          repo-token: "${{ secrets.GITHUB_TOKEN }}"
-      - uses: peaceiris/actions-label-commenter@v1.6.1
-        with:
-          config_file: ".github/db-migrations-comment.yml"
-          github_token: "${{ secrets.GITHUB_TOKEN }}"
   verify-database-migrations:
     runs-on: ubuntu-latest
     needs: triage

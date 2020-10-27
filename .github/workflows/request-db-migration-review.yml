@@ -1,0 +1,16 @@
+name: db-migration-review
+on:
+  pull_request_target:
+    types: [labeled]
+jobs:
+  request-migration-review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: kentaro-m/auto-assign-action@v1.1.2
+        with:
+          configuration-path: ".github/db-migrations-reviewers.yml"
+          repo-token: "${{ secrets.GITHUB_TOKEN }}"
+      - uses: peaceiris/actions-label-commenter@v1.6.1
+        with:
+          config_file: ".github/db-migrations-comment.yml"
+          github_token: "${{ secrets.GITHUB_TOKEN }}"
