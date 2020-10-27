@@ -18,7 +18,7 @@ jobs:
         shell: bash
       - run: docker-compose run --rm migrate
         shell: bash
-      - run: docker-compose exec db mysql -uroot -ppassword -e "select * from flyway_schema_history;" my-app-db
+      - run: docker-compose exec -T db mysql -uroot -ppassword -e "select * from flyway_schema_history;" my-app-db
         shell: bash
       - run: docker-compose down -v
         shell: bash
