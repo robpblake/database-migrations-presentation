@@ -1,2 +1,2 @@
-database-changes:
+database-migration:
   - sql/migrations/**/*
