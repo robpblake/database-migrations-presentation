@@ -9,4 +9,5 @@ jobs:
       - uses: kentaro-m/auto-assign-action@v1.1.2
         with:
           configuration-path: ".github/db-migrations-reviewers.yml"
+          repo-token: "${{ secrets.GITHUB_TOKEN }}"
 
