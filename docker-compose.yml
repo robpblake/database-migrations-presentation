@@ -1,0 +1,32 @@
+---
+version: '3.3'
+services:
+  migrate:
+    image: flyway/flyway:7.0-alpine
+    environment:
+      - FLYWAY_CONFIG_FILES=conf/flyway.conf,conf/local-dev/flyway.conf
+    command: migrate
+    volumes:
+      - ./sql/migrations:/flyway/sql
+      - ./sql/config:/flyway/conf
+    depends_on:
+      - db
+
+  repair:
+    image: flyway/flyway:7.0-alpine
+    environment:
+      - FLYWAY_CONFIG_FILES=conf/flyway.conf,conf/envs/local/flyway.conf
+    command: repair
+    volumes:
+      - ./sql/migrations:/flyway/sql
+      - ./sql/config:/flyway/conf
+    depends_on:
+      - db
+
+  db:
+    image: mariadb:10.4.15
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    ports:
+      - 3306:3306
