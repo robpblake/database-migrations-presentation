@@ -1,0 +1,25 @@
+name: pull-request-ci
+on: pull_request
+jobs:
+  triage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/labeler@2.2.0
+        with:
+          configuration-path: ".github/db-migrations-labeler.yml"
+          repo-token: "${{ secrets.CI_ACCESS_TOKEN }}"
+          sync-labels: true
+  verify-database-migrations:
+    runs-on: ubuntu-latest
+    needs: triage
+    steps:
+      - uses: actions/checkout@v2
+      - run: docker-compose up -d db
+        shell: bash
+      - run: docker-compose run --rm migrate
+        shell: bash
+      - run: docker-compose exec -T db mysql -uroot -ppassword -e "select * from flyway_schema_history;" my-app-db
+        shell: bash
+      - run: docker-compose down -v
+        shell: bash
+        if: ${{ always() }}

@@ -1,0 +1,6 @@
+labels:
+  - name: database-migration
+    labeled:
+      pr:
+        body: |
+          This pull request contains a database migration. It should be thoroughly reviewed by our resident DBA @robpblake

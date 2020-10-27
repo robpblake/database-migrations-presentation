@@ -1,4 +1,4 @@
-create table Customer (
-    ID int not null,
-    NAME varchar (100) not null
+create table customer (
+    id int not null,
+    name varchar (100) not null
 );
