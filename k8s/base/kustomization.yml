@@ -1,0 +1,10 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: db-migration-example
+commonLabels:
+  app: db-migration-example
+resources:
+  - resources/namespace.yml
+  - resources/db.yml
+  - resources/microservice.yml
