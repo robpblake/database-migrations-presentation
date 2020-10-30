@@ -2,4 +2,4 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: db-migration-example
+  name: my-app

@@ -1,0 +1,60 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: apiv1
+  labels:
+    app: apiv1
+spec:
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8080
+  selector:
+    app: apiv1
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apiv1
+  labels:
+    app: apiv1
+spec:
+  selector:
+    matchLabels:
+      app: apiv1
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: apiv1
+    spec:
+      initContainers:
+        - name: flyway-migrations
+          image: quay.io/rblake/microservice-db:v1
+          args:
+            - migrate
+          envFrom:
+            - secretRef:
+                name: apiv1-conf
+                optional: false
+          volumeMounts:
+            - name: flyway-conf
+              mountPath: /flyway/conf/envs/prod/
+      containers:
+        - name: microservice
+          image: quay.io/rblake/microservice:v1
+          imagePullPolicy: IfNotPresent
+          envFrom:
+            - secretRef:
+                name: apiv1-conf
+                optional: false
+          ports:
+            - containerPort: 8080
+              name: http
+      volumes:
+        - name: flyway-conf
+          secret:
+            secretName: apiv1-flyway-conf

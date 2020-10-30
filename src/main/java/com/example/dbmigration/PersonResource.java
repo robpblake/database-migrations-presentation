@@ -15,7 +15,7 @@ import java.util.List;
 public class PersonResource {
 
     @PersistenceContext
-    private EntityManager em;
+    EntityManager em;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)

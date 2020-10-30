@@ -1,0 +1,33 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: api-http-routing
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+spec:
+  rules:
+    - host: api.local
+      http:
+        paths:
+          - path: /v1(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: apiv1
+                port:
+                  number: 80
+          - path: /v2(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: apiv2
+                port:
+                  number: 80
+          - path: /v3(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: apiv3
+                port:
+                  number: 80
