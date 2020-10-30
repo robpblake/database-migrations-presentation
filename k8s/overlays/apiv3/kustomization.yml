@@ -7,10 +7,10 @@ bases:
 resources:
   - resources/microservice.yml
 secretGenerator:
-  - name: apiv2-flyway-conf
+  - name: apiv3-flyway-conf
     files:
       - flyway.conf
-  - name: apiv2-conf
+  - name: apiv3-conf
     envs:
       - env.properties
     type: Opaque

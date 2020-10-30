@@ -20,7 +20,7 @@ public class PersonResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
-    public List<Person> frank() {
+    public List<Person> list() {
         return em.createQuery("select p from Person p", Person.class).getResultList();
     }
 }
